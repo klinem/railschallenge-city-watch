@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
-  resources :responders
-  resources :emergencies
+  resources :responders, except: [:new, :edit], defaults: { format: :json }
+  resources :emergencies, defaults: { format: :json }
+
+  get "/*path" => "errors#not_found"
 end
